@@ -1,0 +1,41 @@
+# my_carparts_detector/configs/train_carparts_job.yaml
+defaults:
+  - _self_            # Allows this file to define its own values
+  - model: v9-t       # From installed yolo package (e.g., yolo/config/model/v9-c.yaml)
+  - task: train       # From installed yolo package (e.g., yolo/config/task/train.yaml)
+  - dataset: carparts-bb # YOUR custom dataset config (configs/dataset/carparts-bb.yaml)
+  - general           # From installed yolo package (e.g., yolo/config/general.yaml)
+
+# Your project-specific settings or overrides for this job
+name: carparts_yolov9t_run_01 # Name of the training run
+
+general:
+  device: 0 # Or "cpu". Use 0 for first GPU.
+  image_size: [640, 640]
+  use_wandb: False # Set to True if you use Weights & Biases
+  weight: True     # Use official COCO pretrained weights for the chosen model (v9-t)
+  lucky_number: 42
+
+task:
+  epoch: 50 # Start with fewer epochs for testing, e.g., 50-100
+  data:
+    batch_size: 8 # Adjust based on your GPU memory
+    cpu_num: 4    # Number of workers for data loading
+  optimizer:
+    args:
+      lr: 0.007 # Example: slightly different learning rate
+
+hydra:
+  run:
+    # Output directory relative to the location of this config file OR hydra.cwd
+    # If running `python scripts/train.py` from project root, hydra.cwd is project root.
+    # So, this path will be project_root/outputs/runs/carparts_yolov9c_run_01
+    dir: outputs/runs/${name}
+  job:
+    # When using @hydra.main(config_path="../configs", ...)
+    # the config_path becomes the primary search path for this job file.
+    # We will augment the search path when running the script to find yolo pkg configs.
+    name: ${name} # Job name for Hydra logging
+  searchpath:
+    - file:///Users/huubal/ScanGo/reykjavik_orientation/YOLO/yolo/config
+

@@ -1,0 +1,34 @@
+# my_carparts_detector/configs/dataset/carparts.yaml
+# IMPORTANT: Use absolute paths or paths relative to a known root that your scripts can resolve.
+# For simplicity with Hydra, if scripts are run from project root, relative paths from there are okay.
+path: data/carparts-bb # Relative to project root where scripts/train.py is run
+train: train/images
+validation: valid/images
+test: test/images
+
+class_num: 23
+class_list: [
+    "back_bumper",
+    "back_door",
+    "back_glass",
+    "back_left_door",
+    "back_left_light",
+    "back_light",
+    "back_right_door",
+    "back_right_light",
+    "front_bumper",
+    "front_door",
+    "front_glass",
+    "front_left_door",
+    "front_left_light",
+    "front_light",
+    "front_right_door",
+    "front_right_light",
+    "hood",
+    "left_mirror",
+    "object",
+    "right_mirror",
+    "tailgate",
+    "trunk",
+    "wheel"
+]
