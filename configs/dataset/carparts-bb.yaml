@@ -2,9 +2,9 @@
 # IMPORTANT: Use absolute paths or paths relative to a known root that your scripts can resolve.
 # For simplicity with Hydra, if scripts are run from project root, relative paths from there are okay.
 path: data/carparts-bb # Relative to project root where scripts/train.py is run
-train: train/images
-validation: valid/images
-test: test/images
+train: train
+validation: valid
+test: test
 
 class_num: 23
 class_list: [

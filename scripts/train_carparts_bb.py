@@ -1,4 +1,3 @@
-print("hello")
 import hydra
 from omegaconf import DictConfig, OmegaConf
 from lightning import Trainer
@@ -8,7 +7,6 @@ import os
 from yolo.tools.solver import TrainModel
 from yolo.utils.logging_utils import setup
 
-print("Starting training script...")
 @hydra.main(config_path="../configs", config_name="train_carparts_bb.yaml", version_base=None)
 def run_training(cfg: DictConfig):
     print("--- Effective Training Configuration ---")

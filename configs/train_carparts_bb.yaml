@@ -7,7 +7,7 @@ defaults:
   - general           # From installed yolo package (e.g., yolo/config/general.yaml)
 
 # Your project-specific settings or overrides for this job
-name: carparts_yolov9t_run_01 # Name of the training run
+name: carparts_${model.name}_01 # Name of the training run
 
 general:
   device: 0 # Or "cpu". Use 0 for first GPU.

@@ -8,8 +8,8 @@ import os
 import glob
 
 # Directories to scan
-parent_dir = '/Users/huubal/ScanGo/reykjavik_orientation/yolo_project/data/carparts-seg'
-root_dirs = ['train', 'val', 'test']
+parent_dir = '/Users/huubal/ScanGo/reykjavik_orientation/yolo_scango/data/carparts-bb/labels'
+root_dirs = ['valid']
 
 def polygon_to_bbox(coords):
     xs = coords[::2]
@@ -23,10 +23,11 @@ def polygon_to_bbox(coords):
     return x_center, y_center, width, height
 
 for split in root_dirs:
-    label_dir = os.path.join(parent_dir, split, 'labels')
+    label_dir = os.path.join(parent_dir, split)
     txt_files = glob.glob(os.path.join(label_dir, '*.txt'))
     
     for txt_file in txt_files:
+        # print(txt_file)
         new_lines = []
         with open(txt_file, 'r') as f:
             for line in f:
