@@ -1,33 +1,21 @@
 # my_carparts_detector/configs/train_carparts_job.yaml
 defaults:
   - model: v9-t       # From installed yolo package (e.g., yolo/config/model/v9-c.yaml)
-  - task: train       # From installed yolo package (e.g., yolo/config/task/train.yaml)
+  - task: inference # From installed yolo package (e.g., yolo/config/task/train.yaml)
   - dataset: carparts-bb # YOUR custom dataset config (configs/dataset/carparts-bb.yaml)
   - general           # From installed yolo package (e.g., yolo/config/general.yaml)
 
 # Your project-specific settings or overrides for this job
 name: carparts_${model.name}_01 # Name of the training run
 
-# general:
-#   device: 0
-#   image_size: [640, 640]
-#   use_wandb: False # Set to True if you use Weights & Biases
-#   weight: True     # Use official COCO pretrained weights for the chosen model (v9-t)
-#   lucky_number: 42
-#   out_path: outputs/runs/${name} 
+data:
+  data/carparts-bb/test
 
-
-image_size: [640, 640]
-use_wandb: True # Set to True if you use Weights & Biases
-weight: True     # Use official COCO pretrained weights for the chosen model (v9-t)
-lucky_number: 42
-out_path: outputs/runs/${name} 
+out_path:
+  outputs
 
 task:
-  epoch: 1 # Start with fewer epochs for testing, e.g., 50-100
-  data:
-    batch_size: 8 # Adjust based on your GPU memory
-    cpu_num: 4    # Number of workers for data loading
+  epoch: 0
 
 hydra:
   searchpath:

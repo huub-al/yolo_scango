@@ -3,7 +3,7 @@ from pathlib import Path
 # Paths
 base_dir = Path("data/carparts-bb")
 image_base = base_dir / "images"
-label_base = base_dir / "labels"
+label_base = base_dir / "labels_xyxy"
 splits = ["train", "valid", "test"]
 
 def validate_format(line, line_num):

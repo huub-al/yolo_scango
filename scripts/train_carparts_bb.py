@@ -26,7 +26,7 @@ def run_training(cfg: DictConfig):
 
     trainer = Trainer(
         accelerator="auto",
-        devices=1 if isinstance(cfg.general.device, (str, int)) and cfg.general.device != "cpu" else "auto",
+        devices=1 if isinstance(cfg.device, (str, int)) and cfg.device != "cpu" else "auto",
         max_epochs=cfg.task.epoch,
         precision=cfg.task.get("precision", "16-mixed"),
         callbacks=callbacks,
@@ -34,7 +34,6 @@ def run_training(cfg: DictConfig):
         log_every_n_steps=cfg.task.get("log_every_n_steps", 1),
         gradient_clip_val=cfg.task.get("gradient_clip_val", 10.0),
         deterministic=cfg.task.get("deterministic", True),
-        enable_progress_bar=not cfg.general.get("quite", False),
         default_root_dir=save_path # Lightning saves checkpoints here
     )
 
